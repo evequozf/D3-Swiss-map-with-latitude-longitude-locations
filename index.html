@@ -49,12 +49,12 @@ var cities = [
   martigny, sion, brig
 ]
 
-// takes coordinates as [latitude,longitude], returns x position
+// takes regular coordinates as [latitude,longitude], returns x position in projection
 var x = function(coords) {
   return projection([coords[1],coords[0]])[0];
 }
 
-// takes coordinates as [latitude,longitude], returns y position
+// takes regular coordinates as [latitude,longitude], returns y position in projection
 var y = function(coords) {
   return projection([coords[1],coords[0]])[1];
 }
@@ -80,7 +80,7 @@ d3.json("vs-municipalities.json", function(error, swiss) {
       .attr("class", "muni-boundary")
       .attr("d", path);
 
-  // draw the cities defined by their latitudes and longitudes in 'cities'
+  // draw circles for cities, using their latitudes and longitudes in 'cities'
   svg.selectAll("circle")
     .data(cities)
     .enter().append("circle")
