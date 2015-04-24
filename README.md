@@ -1,4 +1,4 @@
-# Swiss map with latitude-longitude locations
+# Integrate Swiss map with latitude-longitude locations in D3
 Official Swiss maps from [swisstopo](http://www.swisstopo.admin.ch/internet/swisstopo/en/home.html) use an exotic coordinate system called [CH1903](http://www.swisstopo.admin.ch/internet/swisstopo/en/home/topics/survey/sys/refsys/switzerland.html), in which [the coordinates are already projected](http://www.swisstopo.admin.ch/internet/swisstopo/en/home/topics/survey/sys/refsys/projections.html). To integrate geodata from other APIs that use spherical coordinates (a latitude and a longitude), you need to reproject the maps.
 
 This project gives a minimal example of integrating regular latitudes/longitudes locations, e.g. obtained from an external geo API, into a Swiss map in [D3](http://d3js.org) (actually only the canton of Valais and 3 cities defined in regular latitudes-longitudes coordinates).
