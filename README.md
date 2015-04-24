@@ -11,9 +11,9 @@ First, get [this project by Interactive Things](https://github.com/interactiveth
 If you want to combine your Swiss map with external APIs, you will have to reproject it in spherical coordinates. Luckily, you can do this using the above mentioned project by simply running
 
     make clean
-    make topo/ch-cantons.json REPROJECT=true
+    make topo/vs-municipalities.json REPROJECT=true
 
-(this example generates the cantons boundaries)
+(this example generates the municipalities boundaries in the canton of Valais)
 
 ### Displaying the maps in D3 and integrating locations in spherical coordinates
 The example code you'll find in `index.html` is pretty straightforward. On top of the map generated as described above, three red dots are added at the location of three cities specified in spherical coordinates `[latitude, longitude]`. There are two tricks to understand, though. First, your map is in spherical coordinates, therefore, you need to project them to 2D and make sure the paths from the TopoJSON file containing your map gets projected, too.
