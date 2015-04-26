@@ -6,7 +6,7 @@ This project gives a minimal example of integrating regular latitudes/longitudes
 Demo http://evequoz.name/opendata/valais-map-latlon/ (actually only the canton of Valais and 3 cities defined in regular latitudes-longitudes coordinates)
 
 ### Generating the maps in spherical coordinates
-First, get [this project by Interactive Things](https://github.com/interactivethings/swiss-maps). It helps you generate Swiss maps in TopoJSON from original [swisstopo](http://www.swisstopo.admin.ch/internet/swisstopo/en/home.html) geodata. By default, it generates already projected maps. Those are fine if you are using nothing else than these maps and you are not trying to embed geographical data from other sources (like Google Geocoding API, Leaflet,...) that use spherical coordinates into your maps.
+First, get [this nice project](https://github.com/interactivethings/swiss-maps). It lets you generate Swiss maps in TopoJSON from original [swisstopo](http://www.swisstopo.admin.ch/internet/swisstopo/en/home.html) geodata. By default, it generates already projected maps. They are fine if you are using nothing else and you are not trying to embed geographical data from other sources (like Google Geocoding API, Leaflet,...) that use spherical coordinates.
 
 If you want to combine your Swiss map with external APIs, you will have to reproject it to spherical coordinates. Luckily, you can do this using the above mentioned project by simply running
 
@@ -16,7 +16,7 @@ If you want to combine your Swiss map with external APIs, you will have to repro
 (this example generates the municipalities boundaries in the canton of Valais)
 
 ### Displaying the maps in D3 and integrating locations in spherical coordinates
-The example code you'll find in `index.html` is pretty straightforward. On top of the map generated as described above, three red dots are added at the location of three cities specified in spherical coordinates `[latitude, longitude]`. There are two tricks to understand, though. First, your map is in spherical coordinates, therefore, you need to project them to 2D when you draw them, and make sure the paths from the TopoJSON file containing your map gets projected, too.
+The example code you'll find in `index.html` is pretty straightforward. On top of the map generated as described above, three red dots are added at the location of three cities specified in spherical coordinates `[latitude, longitude]`. There are two tricks to understand, though. First, your map is in spherical coordinates, therefore, you need to project it to 2D when you draw it, and make sure the paths from the TopoJSON file containing your map gets projected, too.
 ```javascript
     var projection = d3.geo.albers()
         .rotate([0, 0])
@@ -32,7 +32,7 @@ Second, the geolocations of the cities are in spherical coordinates. It is usual
 
     coords = [latitude, longitude]
 
-When projected, the two coordinates are mapped to the x and y axes in 2D: the latitude (North-South) is actually an ``y`` coordinate, and the longitude (East-West) is an ``x`` coordinate. This is exactly what those two seeminlgy counterintuitive functions do:
+When projected, the two coordinates will be mapped to the x and y axes in 2D: the latitude (North-South) is actually an ``y`` coordinate, and the longitude (East-West) is an ``x`` coordinate. This is exactly what those two seeminlgy counterintuitive functions do:
 ```javascript
     var x = function(coords) {
       return projection([coords[1],coords[0]])[0];
